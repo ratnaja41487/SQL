@@ -1,0 +1,9 @@
+set SERVEROUTPUT ON;
+BEGIN
+for i in reverse 1..20 loop
+for j in i..20 loop
+    DBMS_OUTPUT.PUT('*'||' ');
+    END LOOP;
+    DBMS_OUTPUT.NEW_LINE();
+    END LOOP; 
+END;
