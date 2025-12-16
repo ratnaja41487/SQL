@@ -1,0 +1,18 @@
+with cte as
+( 
+select 
+h.hacker_id as hacker,
+h.name as hacker_name,
+s.challenge_id as challenge,
+max(s.score) as max_score from 
+hackers h
+JOIN 
+submissions s 
+on h.hacker_id=s.hacker_id 
+group by h.hacker_id, h.name, s.challenge_id
+)
+select hacker,hacker_name,sum(max_score) as total_score
+from cte
+group by hacker,hacker_name
+having sum(max_score)>0
+order by total_score DESC,hacker;
